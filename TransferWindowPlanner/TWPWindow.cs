@@ -434,13 +434,13 @@ namespace TransferWindowPlanner
             GUIStyle styleCopyButton = new GUIStyle(SkinsLibrary.CurrentSkin.button);
             styleCopyButton.fixedHeight = 18;
             styleCopyButton.padding.top = styleCopyButton.padding.bottom = 0;
-            if(GUILayout.Button(new GUIContent(Resources.btnCopy, "Add Alarm for Departure"),styleCopyButton))
+            if(GUILayout.Button(new GUIContent(Resources.btnKAC, "Add Alarm for Departure"),styleCopyButton))
             {
 
                 AlarmTypeRaw alarmToSet = new AlarmTypeRaw
                 {
-                    title = TransferSpecs.OriginName + " > " + TransferSpecs.DestinationName,
-                    description = TransferSpecs.OriginName + " > " + TransferSpecs.DestinationName + " transfer window.",
+                    title = TransferSpecs.OriginName + " -> " + TransferSpecs.DestinationName,
+                    description = TransferSpecs.OriginName + " -> " + TransferSpecs.DestinationName + " transfer window.",
                     actions =
                 {
                     warp = AlarmActions.WarpEnum.DoNothing,
