@@ -434,9 +434,23 @@ namespace TransferWindowPlanner
             GUIStyle styleCopyButton = new GUIStyle(SkinsLibrary.CurrentSkin.button);
             styleCopyButton.fixedHeight = 18;
             styleCopyButton.padding.top = styleCopyButton.padding.bottom = 0;
-            if(GUILayout.Button(new GUIContent(Resources.btnCopy, "Copy Departure UT"),styleCopyButton))
+            if(GUILayout.Button(new GUIContent(Resources.btnCopy, "Add Alarm for Departure"),styleCopyButton))
             {
-                Utilities.CopyTextToClipboard(String.Format("{0:0}", TransferSelected.DepartureTime));
+
+                AlarmTypeRaw alarmToSet = new AlarmTypeRaw
+                {
+                    title = TransferSpecs.OriginName + " > " + TransferSpecs.DestinationName,
+                    description = TransferSpecs.OriginName + " > " + TransferSpecs.DestinationName + " transfer window.",
+                    actions =
+                {
+                    warp = AlarmActions.WarpEnum.DoNothing,
+                    message = AlarmActions.MessageEnum.Yes
+                },
+                    ut = TransferSelected.DepartureTime,
+                };
+                AlarmClockScenario.AddAlarm(alarmToSet);
+
+                
             }
             GUILayout.EndHorizontal();
             GUILayout.Label(String.Format("{0:0.00}°", TransferSelected.PhaseAngle * LambertSolver.Rad2Deg), Styles.styleTextYellow);
